@@ -1,7 +1,6 @@
 package epoch_test
 
 import (
-	"reflect"
 	"testing"
 	"time"
 )
@@ -17,7 +16,7 @@ func TestEpochConversion(t *testing.T) {
 
 	tsObserved := time.Unix(tsEpoch, 0)
 
-	if !reflect.DeepEqual(tsObserved, tsExpected) {
+	if !tsObserved.Equal(tsExpected) {
 		t.Errorf("Expected %v, got %v", tsExpected, tsObserved)
 	}
 }
