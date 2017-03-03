@@ -1,6 +1,10 @@
 # epoch-test: Demo Golang oddities in handling Unix epoch timestamps
 
-If the local timezone is not UTC, then Go's Unix epochs may format and parse incorrectly.
+Specifically, while `time.Unix()` parses Unix epoch integers from timezone UTC,
+the return time object is expressed in terms of the computer's local timezone,
+which may not always be UTC.
+
+Accordingly, users should explicitly `(*Time).In(time.UTC)` any parsed epochs, for safety.
 
 # EXAMPLE
 

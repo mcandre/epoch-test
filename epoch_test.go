@@ -6,17 +6,22 @@ import (
 )
 
 func TestEpochConversion(t *testing.T) {
-	tsExpected, err := time.Parse(time.RFC3339, "2016-01-01T01:00:00Z")
+	tsExpected := "2016-01-01T01:00:00Z"
+
+	tsObject, err := time.Parse(time.RFC3339, tsExpected)
 
 	if err != nil {
 		t.Error(err)
 	}
 
-	tsEpoch := tsExpected.Unix()
+	tsEpoch := tsObject.Unix()
 
-	tsObserved := time.Unix(tsEpoch, 0)
+	tsLocal := time.Unix(tsEpoch, 0)
+	tsUTC := tsLocal.In(time.UTC)
 
-	if !tsObserved.Equal(tsExpected) {
+	tsObserved := tsUTC.Format(time.RFC3339)
+
+	if tsObserved != tsExpected {
 		t.Errorf("Expected %v, got %v", tsExpected, tsObserved)
 	}
 }
