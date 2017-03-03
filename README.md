@@ -14,5 +14,5 @@ CST -0600
 
 $ go test
 PASS
-ok	github.com/mcandre/epoch-derp	0.006s
+ok	github.com/mcandre/epoch-test	0.006s
 ```
